@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page %}
+<div class="row">
+    <div class="col">
+
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper">
+                    <div class="datatable-header">
+                        <div class="row align-items-center mb-3">
+
+                            <div class="col-4 col-lg-auto ps-lg-1 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                    <label class="ws-nowrap me-3 mb-0">Show:</label>
+                                    <select class="form-control select-style-1 results-per-page" name="results-per-page">
+                                        <option value="12" selected>12</option>
+                                        <option value="24">24</option>
+                                        <option value="36">36</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-auto ps-lg-1">
+                                <div class="search search-style-1 search-style-1-lg mx-lg-auto">
+                                    <div class="input-group">
+                                        <input type="text" class="search-term form-control" name="search-term" id="search-term" placeholder="Search Order">
+                                        <button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 750px;">
+
+                        <thead>
+                            <tr>
+                                 <th width="8%">tarehe</th>
+                                <th width="8%">bidhaa</th>
+                                <th width="25%">maelezo</th>
+                                <th width="12%">idadi</th>
+                                <th width="12%">bei ya kununulia</th>
+                                <th width="12%">bei ya kuuzia</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for dat in data %}
+                            <tr>
+                                <td>{{dat.created_ad}}</td>
+                                <td>{{dat.product}}</td>
+                                <td>{{dat.description}}</td>
+                                <td>{{dat.quantity}}</td>
+                                <td>{{dat.selling_price}}</td>
+                                <td>{{dat.buyying_price}}</td>
+
+
+                            </tr>
+                       {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                    <hr class="solid mt-5 opacity-4">
+                    <div class="datatable-footer">
+                        <div class="row align-items-center justify-content-between mt-3">
+                            <div class="col-md-auto order-1 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-stretch">
+<!--                                    <div class="d-grid gap-3 d-md-flex justify-content-md-end me-4">-->
+<!--                                        <select class="form-control select-style-1 bulk-action" name="bulk-action" style="min-width: 170px;">-->
+<!--                                            <option value="" selected>Bulk Actions</option>-->
+<!--                                            <option value="delete">Delete</option>-->
+<!--                                        </select>-->
+<!--                                        <a href="ecommerce-coupons-form.html" class="bulk-action-apply btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Apply</a>-->
+<!--                                    </div>-->
+
+                                </div>
+                            </div>
+                            <div class="col-lg-auto text-center order-3 order-lg-2">
+                                <div class="results-info-wrapper"></div>
+                            </div>
+                            <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                <div class="pagination-wrapper"></div>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block myblock %}
+bidhaa zilizopo
+{% endblock %}
