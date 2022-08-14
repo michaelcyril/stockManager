@@ -88,3 +88,5 @@ def daily_sales(request):
     }
     return render(request,'daily_sales.html',context)
 
+def SellingView(request):
+    return render(request,'selling_form.html')
