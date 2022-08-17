@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page %}
-<form class="ecommerce-form action-buttons-fixed" action="product_form" method="post">
+<form class="ecommerce-form action-buttons-fixed" action="selling" method="post">
 	{% csrf_token %}
 							<div class="row mt-2">
 								<div class="col">
@@ -17,40 +17,34 @@
 													<div class="form-group row align-items-center pb-3">
 														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Jina la bidhaa</label>
 														<div class="col-lg-7 col-xl-6">
-															<input type="text" class="form-control form-control-modern" name="product" required />
+														<select class="form-control select-style-1 results-per-page" name="product">
+																{% for product in products %}
+															<option value="{{product.id}}" selected>{{product.product}} => {{product.description}}</option>
+																{% endfor %}
+
+														</select>
 														</div>
+
 													</div>
-													<div class="form-group row">
-														<label class="col-lg-5 col-xl-3 control-label text-lg-end pt-2 mt-1 mb-0">Maelezo ya bidhaa</label>
-														<div class="col-lg-7 col-xl-6">
-															<textarea class="form-control form-control-modern" name="description" rows="6"></textarea>
-														</div>
-													</div>
-													<div class="form-group row align-items-center pb-3">
-																<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Bei ya kununulia</label>
-																<div class="col-lg-7 col-xl-6">
-																	<input type="number" class="form-control form-control-modern" name="buyying_price"  required />
-																</div>
-															</div>
 													<div class="form-group row align-items-center">
 														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Bei ya kuuzia</label>
 														<div class="col-lg-7 col-xl-6">
-															<input type="number" class="form-control form-control-modern" name="selling_price" />
+															<input type="number" class="form-control form-control-modern" name="selling_price" required/>
 														</div>
 													</div>
 													<div class="form-group row align-items-center">
 														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">idadi ya bidhaa</label>
 														<div class="col-lg-7 col-xl-6">
-															<input type="number" class="form-control form-control-modern" name="quantity" />
+															<input type="number" class="form-control form-control-modern" name="quantity" required/>
 														</div>
 													</div>
 													<div class="form-group row align-items-center">
-														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">idadi ya bidhaa</label>
+														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Muingizaji</label>
 														<div class="col-lg-7 col-xl-6">
 
 															<select class="form-control select-style-1 results-per-page" name="created_by">
-																{% for dat in emp %}
-															<option value="{{dat.id}}" selected>{{dat.username}}</option>
+																{% for seller in sellers %}
+															<option value="{{seller.id}}" selected>{{seller.username}}</option>
 																{% endfor %}
 
 															</select>

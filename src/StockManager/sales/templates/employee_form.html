@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page %}
-<form class="ecommerce-form action-buttons-fixed" action="#" method="post">
+<form class="ecommerce-form action-buttons-fixed" action="employee_form" method="post">
+							{% csrf_token %}
 							<div class="row mt-2">
 								<div class="col">
 									<section class="card card-modern card-big-info">
@@ -16,7 +17,7 @@
 													<div class="form-group row align-items-center pb-3">
 														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Jina la mfanyakazi</label>
 														<div class="col-lg-7 col-xl-6">
-															<input type="text" class="form-control form-control-modern" name="productName" value="" required />
+															<input type="text" class="form-control form-control-modern" name="username"  required />
 														</div>
 													</div>
 
@@ -24,7 +25,7 @@
 													<div class="form-group row align-items-center">
 														<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">namba ya simu</label>
 														<div class="col-lg-7 col-xl-6">
-															<input type="text" class="form-control form-control-modern" name="phone" value="" />
+															<input type="text" class="form-control form-control-modern" name="phone_no" />
 														</div>
 													</div>
 												</div>

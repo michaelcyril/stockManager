@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect,reverse
+from django.forms import model_to_dict
+from django.shortcuts import render,redirect,reverse,HttpResponse
 from .forms import StockForm,SalesForm,EmployeeForm
 from .models import Sales,Stock,Employee
 from datetime import datetime
@@ -48,6 +49,13 @@ def all_sales_report(request):
 
     return render(request,'all_sales_report.html',context)
 def product_form(request):
+    if request.method == "POST":
+        data = request.POST
+        forms = StockForm(data)
+        if forms.is_valid():
+            forms.save()
+            return redirect('http://127.0.0.1:8000/product_form')
+
     emp=Employee.objects.all()
     context={
         'emp':emp
@@ -56,13 +64,19 @@ def product_form(request):
         data=StockForm(request.POST)
         if data.is_valid():
             data.save()
-        return redirect(reverse('product_form'))
+        return redirect('http://127.0.0.1:8000/product_form')
     return render(request,'product_form.html',context)
 def print_view(request):
     return render(request,'pages-invoice-print.html')
 
 def employee_form(request):
-    return render(request,'employee_form.html')
+    if request.method == "POST":
+        data = request.POST
+        forms = EmployeeForm(data)
+        if forms.is_valid():
+            forms.save()
+            return redirect('http://127.0.0.1:8000/employee_form')
+    return render(request, 'employee_form.html')
 
 def daily_sales(request):
     today = datetime.today()
@@ -88,5 +102,82 @@ def daily_sales(request):
     }
     return render(request,'daily_sales.html',context)
 
+#IT SAVE WITHOUT UPDATE THE STOCK
+
+# def SellingView(request):
+#     if request.method=="POST":
+#         data=request.POST
+#         forms=SalesForm(data)
+#         if forms.is_valid():
+#             forms.save()
+#             return redirect('http://127.0.0.1:8000/selling')
+#     product=Stock.objects.all()
+#     seller=Employee.objects.all()
+#     context={
+#         'products':product,
+#         'sellers':seller
+#
+#     }
+#     return render(request,'selling_form.html',context)
+#
+
+
+
+
+
+#REDIRECT TO SHIFT WITH SOME MESSAGES
+# def save_form(request, *args, **kwargs):
+#     # all goes well
+#     message = _("form for customer xyz was successfully updated...")
+#     request.user.message_set.create(message=message)
+#     return redirect('list_view')
+#
+#
+# def list_view(request, *args, **kwargs):
+#     # Render page
+#     # Template for list_view:
+#     {% for message in messages %}
+
+#     { % endfor %}
+
+
+
 def SellingView(request):
-    return render(request,'selling_form.html')
+
+    if request.method=="POST":
+        data=request.POST
+        q_red=request.POST.get('quantity',False)
+        pro_id=request.POST.get('product',False)
+        stock_before=Stock.objects.filter(id=pro_id).values()
+        #THE CODE TO CONVERT THE QUERYSET INTO DICTATIONARY
+        list_result = [entry for entry in stock_before]
+        print(list_result)
+        print('the data are ',stock_before[0]['quantity'])
+        if stock_before[0]['quantity'] == 0:
+            #some messages
+            return redirect('http://127.0.0.1:8000/selling')
+        new_quantity = stock_before[0]['quantity'] - int(q_red)
+
+        if stock_before[0]['quantity'] >= int(q_red):
+            new_stock=Stock.objects.get(id=pro_id)
+            new_stock.quantity=new_quantity
+            new_stock.save()
+            form=SalesForm(data)
+            # if data.is_valid():
+            form.save()
+            #some messages
+            # return redirect('product_form')
+            #some messages
+            return redirect('http://127.0.0.1:8000/selling')
+
+        #some messages
+        return redirect('http://127.0.0.1:8000/selling')
+
+    product=Stock.objects.all()
+    seller=Employee.objects.all()
+    context={
+        'products':product,
+        'sellers':seller
+
+    }
+    return render(request,'selling_form.html',context)
