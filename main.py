@@ -14,3 +14,12 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+
+
+# import requests
+
+# url="http://172.17.20.169:3000/api/tra/tozo"
+# data=requests.get(url)
+# print(data.text)

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page %}
+{% load humanize %}
 <div class="row">
     <div class="col">
 
@@ -29,6 +30,12 @@
                                     </div>
                                 </div>
                             </div>
+                             <div class="col-4 col-lg-auto ps-lg-1 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                    <label class="ws-nowrap me-3 mb-0">Matarajio ya faida:</label>
+                                    <h4 >{{sum|intcomma}}.00Tsh</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -38,8 +45,9 @@
                             <tr>
                                  <th width="8%">tarehe</th>
                                 <th width="8%">bidhaa</th>
-                                <th width="25%">maelezo</th>
-                                <th width="12%">idadi</th>
+                                <th width="15%">maelezo</th>
+                                <th width="12%">idadi iliyo nunuliwa</th>
+                                <th width="11%">idadi iliyopo</th>
                                 <th width="12%">bei ya kununulia</th>
                                 <th width="12%">bei ya kuuzia</th>
 
@@ -48,12 +56,13 @@
                         <tbody>
                         {% for dat in data %}
                             <tr>
-                                <td>{{dat.created_ad}}</td>
+                                <td>{{dat.created_ad|date:'d/m/Y   H:i'}}</td>
                                 <td>{{dat.product}}</td>
                                 <td>{{dat.description}}</td>
+                                <td>{{dat.quantity1}}</td>
                                 <td>{{dat.quantity}}</td>
-                                <td>{{dat.selling_price}}</td>
-                                <td>{{dat.buyying_price}}</td>
+                                <td>{{dat.selling_price|intcomma}}</td>
+                                <td>{{dat.buyying_price|intcomma}}</td>
 
 
                             </tr>

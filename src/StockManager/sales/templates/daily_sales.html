@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page %}
+{% load humanize %}
 <section class="card">
 						<div class="card-body">
 							<div class="invoice">
@@ -44,12 +45,12 @@
 									<tbody>
 									{% for dat in data %}
 										<tr>
-											<td>{{dat.created_at}}</td>
+											<td>{{dat.created_at|date:'d/m/Y   H:i'}}</td>
 											<td class="font-weight-semibold text-dark">{{dat.product}}</td>
 											<td>{{dat.product.description}}</td>
-											<td class="text-center">{{dat.selling_price}}</td>
+											<td class="text-center">{{dat.selling_price|intcomma }}</td>
 											<td class="text-center">{{dat.quantity}}</td>
-											<td class="text-center">{{dat.total}}</td>
+											<td class="text-center">{{dat.total|intcomma }}</td>
 										</tr>
 									{% endfor %}
 
@@ -63,15 +64,15 @@
 												<tbody>
 													<tr class="b-top-0">
 														<td colspan="2">Jumla ya mapato</td>
-														<td class="text-left">{{sum}}</td>
+														<td class="text-left">{{sum|intcomma }}.00Tsh</td>
 													</tr>
 													<tr>
 														<td colspan="2">mengineyo</td>
-														<td class="text-left">0.00</td>
+														<td class="text-left">0.00Tsh</td>
 													</tr>
-													<tr class="h4">
+													<tr class="h5">
 														<td colspan="2">Jumla kamili</td>
-														<td class="text-left">{{sum}}</td>
+														<td class="text-left">{{sum|intcomma }}.00Tsh</td>
 													</tr>
 												</tbody>
 											</table>

@@ -1,95 +1,134 @@
-{% load static %}
+<!--{% load static %}-->
 
+<!--<html>-->
+<!--	-->
+<!--&lt;!&ndash; Mirrored from www.okler.net/previews/porto-admin/4.0.0/pages-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Aug 2022 09:26:38 GMT &ndash;&gt;-->
+<!--<head>-->
+<!--		<title>Print</title>-->
+<!--		&lt;!&ndash; Web Fonts  &ndash;&gt;-->
+
+<!--		&lt;!&ndash; Vendor CSS &ndash;&gt;-->
+<!--		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />-->
+
+<!--		&lt;!&ndash; Invoice Print Style &ndash;&gt;-->
+<!--		<link rel="stylesheet" href="{% static 'css/invoice-print.css' %}" />-->
+<!--	</head>-->
+<!--	<body>-->
+<!--		<div class="invoice">-->
+
+<!--			<div class="bill-info">-->
+<!--				<div class="row">-->
+<!--					<div class="col-md-6">-->
+<!--						<div class="bill-to">-->
+<!--							<p class="h5 mb-1 text-dark font-weight-semibold">TAARIFA YA MAUZO YA KILA SIKU:</p>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6">-->
+<!--						<div class="bill-data text-end">-->
+<!--							<p class="mb-0">-->
+<!--								<span class="text-dark">Invoice Date:</span>-->
+<!--								<span class="value">05/20/2021</span>-->
+<!--							</p>-->
+
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--			<table class="table table-responsive-md invoice-items">-->
+<!--				<thead>-->
+<!--					<tr class="text-dark">-->
+<!--							<th id="cell-id"     class="font-weight-semibold">tarehe</th>-->
+<!--							<th id="cell-item"   class="font-weight-semibold">bidhaa</th>-->
+<!--							<th id="cell-desc"   class="font-weight-semibold">maelezo</th>-->
+<!--							<th id="cell-price"  class="text-center font-weight-semibold">thamani</th>-->
+<!--							<th id="cell-qty"    class="text-center font-weight-semibold">idadi</th>-->
+<!--							<th id="cell-total"  class="text-center font-weight-semibold">jumla</th>-->
+<!--					</tr>-->
+<!--				</thead>-->
+<!--				<tbody>-->
+<!--					{% for dat in data %}-->
+<!--					<tr>-->
+<!--						<td>{{dat.created_at}}</td>-->
+<!--						<td class="font-weight-semibold text-dark">{{dat.product}}</td>-->
+<!--						<td>{{dat.product.description}}</td>-->
+<!--						<td class="text-center">{{dat.selling_price}}</td>-->
+<!--						<td class="text-center">{{dat.quantity}}</td>-->
+<!--						<td class="text-center">{{dat.total}}</td>-->
+<!--					</tr>-->
+<!--					{% endfor %}-->
+
+<!--				</tbody>-->
+<!--			</table>-->
+
+<!--			<div class="invoice-summary">-->
+<!--				<div class="row justify-content-end">-->
+<!--					<div class="col-sm-4">-->
+<!--						<table class="table h6 text-dark">-->
+<!--							<tbody>-->
+<!--								<tr class="b-top-0">-->
+<!--									<td colspan="2">Subtotal</td>-->
+<!--									<td class="text-left">$73.00</td>-->
+<!--								</tr>-->
+<!--								<tr>-->
+<!--									<td colspan="2">Shipping</td>-->
+<!--									<td class="text-left">$0.00</td>-->
+<!--								</tr>-->
+<!--								<tr class="h4">-->
+<!--									<td colspan="2">Grand Total</td>-->
+<!--									<td class="text-left">$73.00</td>-->
+<!--								</tr>-->
+<!--							</tbody>-->
+<!--						</table>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+
+<!--		<script data-cfasync="false" src="{% static '../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script>-->
+<!--			window.print();-->
+<!--		</script>-->
+<!--&lt;!&ndash;	<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"737fb4025e2076af","version":"2022.6.0","r":1,"token":"03fa3b9eb60b49789931c4694c153f9b","si":100}' crossorigin="anonymous"></script>&ndash;&gt;-->
+<!--</body>-->
+
+<!--&lt;!&ndash; Mirrored from www.okler.net/previews/porto-admin/4.0.0/pages-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Aug 2022 09:26:38 GMT &ndash;&gt;-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
 <html>
-	
-<!-- Mirrored from www.okler.net/previews/porto-admin/4.0.0/pages-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Aug 2022 09:26:38 GMT -->
-<head>
-		<title>Porto Admin - Invoice Print</title>
-		<!-- Web Fonts  -->
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style>
 
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />
+<body>
 
-		<!-- Invoice Print Style -->
-		<link rel="stylesheet" href="{% static 'css/invoice-print.css' %}" />
-	</head>
-	<body>
-		<div class="invoice">
+<h2>100% wide HTML Table</h2>
 
-			<div class="bill-info">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="bill-to">
-							<p class="h5 mb-1 text-dark font-weight-semibold">TAARIFA YA MAUZO YA KILA SIKU:</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="bill-data text-end">
-							<p class="mb-0">
-								<span class="text-dark">Invoice Date:</span>
-								<span class="value">05/20/2021</span>
-							</p>
+<table style="width:90%; margin-left:5%; margin-right:5%">
+  <tr>
+    <th>tarehe</th>
+    <th>bidhaa</th>
+    <th>maelezo</th>
+    <th>thamani</th>
+    <th>idadi</th>
+    <th>jumla</th>
+  </tr>
+  <tr>
+    {% for dat in data %}
+    <td>{{dat.created_at}}</td>
+    <td>{{dat.product}}</td>
+    <td>{{dat.product.description}}</td>
+    <td>{{dat.selling_price}}</td>
+    <td>{{dat.quantity}}</td>
+    <td>{{dat.total}}</td>
+    {% endfor %}
+  </tr>
 
-						</div>
-					</div>
-				</div>
-			</div>
+</table>
 
-			<table class="table table-responsive-md invoice-items">
-				<thead>
-					<tr class="text-dark">
-							<th id="cell-id"     class="font-weight-semibold">tarehe</th>
-							<th id="cell-item"   class="font-weight-semibold">bidhaa</th>
-							<th id="cell-desc"   class="font-weight-semibold">maelezo</th>
-							<th id="cell-price"  class="text-center font-weight-semibold">thamani</th>
-							<th id="cell-qty"    class="text-center font-weight-semibold">idadi</th>
-							<th id="cell-total"  class="text-center font-weight-semibold">jumla</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for dat in data %}
-					<tr>
-						<td>{{dat.created_at}}</td>
-						<td class="font-weight-semibold text-dark">{{dat.product}}</td>
-						<td>{{dat.product.description}}</td>
-						<td class="text-center">{{dat.selling_price}}</td>
-						<td class="text-center">{{dat.quantity}}</td>
-						<td class="text-center">{{dat.total}}</td>
-					</tr>
-					{% endfor %}
-
-				</tbody>
-			</table>
-
-			<div class="invoice-summary">
-				<div class="row justify-content-end">
-					<div class="col-sm-4">
-						<table class="table h6 text-dark">
-							<tbody>
-								<tr class="b-top-0">
-									<td colspan="2">Subtotal</td>
-									<td class="text-left">$73.00</td>
-								</tr>
-								<tr>
-									<td colspan="2">Shipping</td>
-									<td class="text-left">$0.00</td>
-								</tr>
-								<tr class="h4">
-									<td colspan="2">Grand Total</td>
-									<td class="text-left">$73.00</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<script data-cfasync="false" src="{% static '../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script>
-			window.print();
-		</script>
-	<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"737fb4025e2076af","version":"2022.6.0","r":1,"token":"03fa3b9eb60b49789931c4694c153f9b","si":100}' crossorigin="anonymous"></script>
 </body>
-
-<!-- Mirrored from www.okler.net/previews/porto-admin/4.0.0/pages-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Aug 2022 09:26:38 GMT -->
 </html>

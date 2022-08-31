@@ -10,6 +10,7 @@ class Employee(models.Model):
 
 class Stock(models.Model):
     product=models.CharField(max_length=30)
+    quantity1=models.IntegerField(default=1)
     quantity=models.IntegerField()
     description=models.TextField()
     buyying_price=models.DecimalField(max_digits=10,decimal_places=2)
@@ -18,6 +19,8 @@ class Stock(models.Model):
     created_ad=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.product
+    def expectedprofit(self):
+        return (self.quantity*self.selling_price)-(self.quantity*self.buyying_price)
 
 class Sales(models.Model):
     product=models.ForeignKey(Stock,on_delete=models.CASCADE)

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import sign_up,product_list,product_form,all_sales_report,testpage,print_view,employee_form,daily_sales,SellingView
+from .views import *
 app_name='sales'
 
 urlpatterns = [
@@ -11,4 +11,7 @@ urlpatterns = [
     path('employee_form', employee_form),
     path('daily_sales',daily_sales),
     path('selling',SellingView),
+    path('login',login_user),
+    path('logout',logout_user),
+    # path('print',html_to_pdf_view),
 ]
